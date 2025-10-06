@@ -1,0 +1,29 @@
+name: Format
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  clang-format:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          submodules: false
+
+      - name: Install LLVM/Clang
+        run: |
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 21
+          sudo apt-get install -y clang-format-21
+
+      - name: Run clang-format
+        run: |
+          find src -name '*.cpp' -o -name '*.h' -o -name '*.hpp' | \
+          xargs clang-format-21 --dry-run --Werror

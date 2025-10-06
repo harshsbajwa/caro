@@ -1,8 +1,9 @@
+#include <vulkan/vulkan.h>
+
 #include <print>
 
 
-auto main() -> int
-{
+auto main() -> int {
     std::println("Hello, world!");
     return 0;
 }
