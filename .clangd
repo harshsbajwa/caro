@@ -1,0 +1,6 @@
+CompileFlags:
+    # C++26
+    Add: [-std=c++2c, -Wall, -Wextra, -Wpedantic]
+Diagnostics:
+    ClangTidy:
+        Add: [performance*, modernize*, readability*]
